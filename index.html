@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Funny Water Co. — Beverages for the Beautifully Deranged</title>
+<link href="https://fonts.googleapis.com/css2?family=Boogaloo&family=Fredoka+One&family=Nunito:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sky: #5BC8F5;
+    --sun: #FFD93D;
+    --coral: #1D72F5;
+    --mint: #6BCB77;
+    --lavender: #C77DFF;
+    --peach: #FFB347;
+    --cream: #FFFBE6;
+    --dark: #1A1A2E;
+    --card-radius: 28px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background-color: var(--cream);
+    font-family: 'Nunito', sans-serif;
+    overflow-x: hidden;
+    cursor: default;
+  }
+
+  /* ── NOISE TEXTURE OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 999;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: linear-gradient(160deg, var(--sky) 0%, #a8e6ff 45%, var(--sun) 100%);
+    padding: 60px 20px 80px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0; right: 0;
+    height: 60px;
+    background: var(--cream);
+    clip-path: ellipse(55% 100% at 50% 100%);
+  }
+
+  .blob {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.25;
+    animation: blob-float 8s ease-in-out infinite;
+  }
+  .blob-1 { width: 320px; height: 320px; background: #1D72F5; top: -80px; left: -80px; animation-delay: 0s; }
+  .blob-2 { width: 200px; height: 200px; background: var(--lavender); bottom: 20px; right: -40px; animation-delay: -3s; }
+  .blob-3 { width: 140px; height: 140px; background: var(--mint); top: 30px; right: 15%; animation-delay: -5s; }
+
+  @keyframes blob-float {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-20px) scale(1.05); }
+  }
+
+  .logo-badge {
+    display: inline-block;
+    background: white;
+    border-radius: 999px;
+    padding: 8px 28px;
+    font-family: 'Fredoka One', cursive;
+    font-size: 0.95rem;
+    color: var(--sky);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+    position: relative; z-index: 1;
+  }
+
+  .hero h1 {
+    font-family: 'Fredoka One', cursive;
+    font-size: clamp(3.5rem, 10vw, 7rem);
+    line-height: 1;
+    color: white;
+    text-shadow: 6px 6px 0 #1A7FB5, 3px 3px 0 #1A7FB5;
+    position: relative; z-index: 1;
+    letter-spacing: -1px;
+  }
+
+  .hero h1 span {
+    color: var(--sun);
+    text-shadow: 6px 6px 0 #b8860b, 3px 3px 0 #b8860b;
+  }
+
+  .hero p.tagline {
+    font-size: clamp(1rem, 2.5vw, 1.35rem);
+    font-weight: 700;
+    color: var(--dark);
+    background: var(--sun);
+    display: inline-block;
+    padding: 8px 24px;
+    border-radius: 999px;
+    margin-top: 20px;
+    transform: rotate(-1.5deg);
+    box-shadow: 3px 3px 0 rgba(0,0,0,0.2);
+    position: relative; z-index: 1;
+  }
+
+  .hero-mascot {
+    font-size: 3rem;
+    margin-top: 28px;
+    animation: wiggle 2s ease-in-out infinite;
+    display: inline-block;
+    position: relative; z-index: 1;
+  }
+
+  @keyframes wiggle {
+    0%, 100% { transform: rotate(-8deg); }
+    50% { transform: rotate(8deg); }
+  }
+
+  /* ── SECTION ── */
+  .products-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 60px 24px 80px;
+  }
+
+  .section-label {
+    text-align: center;
+    font-family: 'Fredoka One', cursive;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    color: var(--dark);
+    margin-bottom: 10px;
+  }
+
+  .section-label::after {
+    content: ' ✦';
+    color: var(--coral);
+  }
+
+  .section-sub {
+    text-align: center;
+    color: #888;
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 48px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+
+  /* ── SPECIAL DEAL CARD ── */
+.special-deal-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(135deg, var(--sun) 0%, #ff5e07 100%);
+  border-radius: var(--card-radius);
+  margin-bottom: 40px; /* Space before the grid starts */
+  padding: 40px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 15px 40px rgba(255, 217, 61, 0.3);
+  border: 4px solid var(--dark); /* Give it a bold "comic" border */
+  transition: transform 0.3s cubic-bezier(.34, 1.56, .64, 1), box-shadow 0.3s ease;
+}
+
+/* Decorative background element for the big card */
+.special-deal-card::before {
+  content: '⚡';
+  position: absolute;
+  font-size: 15rem;
+  right: -20px;
+  bottom: -50px;
+  opacity: 0.1;
+  transform: rotate(-15deg);
+}
+
+.deal-content {
+  flex: 1;
+  z-index: 1;
+}
+
+.deal-content h2 {
+  font-family: 'Fredoka One', cursive;
+  font-size: clamp(2rem, 5vw, 3rem);
+  color: var(--dark);
+  margin: 15px 0;
+}
+
+.deal-content p {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #444;
+  margin-bottom: 25px;
+  max-width: 450px;
+}
+
+.deal-footer {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.deal-footer .price {
+  font-family: 'Fredoka One', cursive;
+  font-size: 2rem;
+  color: var(--coral);
+}
+
+.deal-image {
+  flex: 0 0 40%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+}
+
+.deal-image img {
+  width: 100%;
+  max-width: 300px;
+  filter: drop-shadow(0 15px 20px rgba(0,0,0,0.2));
+  transition: transform 0.3s ease;
+}
+
+.special-deal-card:hover {
+  /* Moves the whole card up 10px and rotates it slightly */
+  transform: translateY(-10px) rotate(-1deg);
+  /* Makes the shadow deeper to simulate the card lifting off the page */
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+}
+
+
+
+/* ── MOBILE RESPONSIVENESS ── */
+@media (max-width: 850px) {
+  .special-deal-card {
+    flex-direction: column;
+    text-align: center;
+    padding: 30px 20px;
+  }
+  
+  .deal-content p {
+    margin: 15px auto 25px;
+  }
+
+  .deal-footer {
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .deal-image {
+    margin-top: 30px;
+  }
+}
+
+
+  /* ── PRODUCT GRID ── */
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 28px;
+  }
+
+  .product-card {
+    background: white;
+    border-radius: var(--card-radius);
+    overflow: hidden;
+    position: relative;
+    transition: transform 0.3s cubic-bezier(.34,1.56,.64,1), box-shadow 0.3s ease;
+    box-shadow: 0 6px 30px rgba(0,0,0,0.08);
+    cursor: pointer;
+  }
+
+  .product-card:hover {
+    transform: translateY(-10px) rotate(0.8deg);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.16);
+  }
+
+  .product-card:nth-child(even):hover {
+    transform: translateY(-10px) rotate(-0.8deg);
+  }
+
+  .card-header {
+    padding: 32px 24px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 230px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Individual card accent colors */
+  .card-1 .card-header { background: linear-gradient(135deg, #d0f0ff 0%, #b8e8ff 100%); }
+  .card-2 .card-header { background: linear-gradient(135deg, #ffe0f0 0%, #ffc8e4 100%); }
+  .card-3 .card-header { background: linear-gradient(135deg, #e0ffe8 0%, #c8f5d4 100%); }
+  .card-4 .card-header { background: linear-gradient(135deg, #fff8d0 0%, #fff0a8 100%); }
+  .card-5 .card-header { background: linear-gradient(135deg, #ffe8d0 0%, #ffd4a8 100%); }
+  .card-6 .card-header { background: linear-gradient(135deg, #ecdeff 0%, #dfc0ff 100%); }
+
+  .card-header::before {
+    content: '';
+    position: absolute;
+    width: 180px; height: 180px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.35);
+    bottom: -60px; right: -40px;
+  }
+
+  .product-img {
+    width: auto;
+    height: 160px;
+    object-fit: contain;
+    position: relative; z-index: 1;
+    transition: transform 0.4s cubic-bezier(.34,1.56,.64,1);
+    filter: drop-shadow(0 8px 16px rgba(0,0,0,0.18));
+  }
+
+  .product-card:hover .product-img {
+    transform: scale(1.12) translateY(-6px);
+  }
+
+  .badge {
+    position: absolute;
+    top: 16px; right: 16px;
+    font-family: 'Fredoka One', cursive;
+    font-size: 0.75rem;
+    padding: 5px 12px;
+    border-radius: 999px;
+    color: white;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    z-index: 2;
+  }
+  .badge-new   { background: var(--coral); }
+  .badge-hot   { background: #FF8C00; }
+  .badge-weird { background: var(--lavender); }
+  .badge-cool  { background: var(--sky); color: var(--dark); }
+  .badge-bold  { background: var(--mint); color: var(--dark); }
+  .badge-sip   { background: var(--peach); color: var(--dark); }
+
+  .card-body {
+    padding: 20px 24px 26px;
+  }
+
+  .product-name {
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.5rem;
+    color: var(--dark);
+    margin-bottom: 8px;
+    line-height: 1.2;
+  }
+
+  .product-desc {
+    font-size: 0.92rem;
+    color: #555;
+    line-height: 1.6;
+    font-weight: 600;
+  }
+
+  .product-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 2px dashed #eee;
+  }
+
+  .product-price {
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.25rem;
+    color: var(--coral);
+  }
+
+  .product-volume {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: #aaa;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .product-cta {
+    font-family: 'Fredoka One', cursive;
+    font-size: 0.9rem;
+    background: var(--dark);
+    color: white;
+    border: none;
+    padding: 8px 18px;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+  }
+
+  .product-cta:hover {
+    background: var(--coral);
+    transform: scale(1.05);
+  }
+
+  /* ── BANNER STRIP ── */
+  .marquee-strip {
+    background: var(--dark);
+    color: var(--sun);
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.05rem;
+    letter-spacing: 2px;
+    padding: 14px 0;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  .marquee-inner {
+    display: inline-block;
+    animation: marquee 22s linear infinite;
+  }
+
+  .marquee-inner span {
+    margin: 0 32px;
+  }
+
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--dark);
+    color: rgba(255,255,255,0.4);
+    text-align: center;
+    padding: 28px 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+  }
+
+  footer strong {
+    color: var(--sun);
+    font-family: 'Fredoka One', cursive;
+  }
+
+  /* ── FLOATING DECO ── */
+  .deco-float {
+    position: fixed;
+    font-size: 2.5rem;
+    pointer-events: none;
+    opacity: 0.06;
+    z-index: 0;
+    animation: drift 14s ease-in-out infinite;
+  }
+  .deco-float:nth-child(1) { top: 10%; left: 3%; animation-delay: 0s; }
+  .deco-float:nth-child(2) { top: 40%; right: 2%; animation-delay: -5s; }
+  .deco-float:nth-child(3) { bottom: 20%; left: 6%; animation-delay: -9s; }
+
+  @keyframes drift {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-30px) rotate(15deg); }
+  }
+
+  @media (max-width: 600px) {
+    .product-grid { grid-template-columns: 1fr 1fr; gap: 16px; }
+    .card-header { min-height: 160px; padding: 20px 12px 16px; }
+    .product-img { height: 110px; }
+    .card-body { padding: 14px 14px 18px; }
+    .product-name { font-size: 1.1rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Floating background decorations -->
+<div class="deco-float">💧</div>
+<div class="deco-float">🫧</div>
+<div class="deco-float">🐰</div>
+
+<!-- ── HERO ── -->
+<header class="hero">
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+  <div class="logo-badge">✦ Est. 2024 ✦</div>
+  <h1>Funny<br><span>Water Co.</span></h1>
+  <p class="tagline">Beverages for the Beautifully Deranged™</p>
+  <div class="hero-mascot">💧😎</div>
+</header>
+
+<!-- ── MARQUEE ── -->
+<div class="marquee-strip">
+  <div class="marquee-inner">
+    <span>NATURALLY REFRESHING</span>
+    <span>✦</span>
+    <span>QUESTIONABLY NAMED</span>
+    <span>✦</span>
+    <span>ELECTROLYTES &amp; VIBES</span>
+    <span>✦</span>
+    <span>HYDRATION OR HALLUCINATION?</span>
+    <span>✦</span>
+    <span>CERTIFIED WEIRD</span>
+    <span>✦</span>
+    <span>NATURALLY REFRESHING</span>
+    <span>✦</span>
+    <span>QUESTIONABLY NAMED</span>
+    <span>✦</span>
+    <span>ELECTROLYTES &amp; VIBES</span>
+    <span>✦</span>
+    <span>HYDRATION OR HALLUCINATION?</span>
+    <span>✦</span>
+    <span>CERTIFIED WEIRD</span>
+    <span>✦</span>
+  </div>
+</div>
+
+<!-- ── PRODUCTS ── -->
+<section class="products-section">
+  <h2 class="section-label">Our Legendary Lineup</h2>
+  <p class="section-sub">Six drinks. Zero apologies.</p>
+
+  <!-- special deal container -->
+  <div class="special-deal-card">
+    <div class="deal-content">
+      <span class="badge badge-hot">Limited Time</span>
+      <h2>6 Pack Deal 💧💦💧</h2>
+      <p>U thirsty ? Take 6 for the price of 7.</p>
+      <div class="deal-footer">
+        <span class="price">CHF 13.95</span>
+        <button class="product-cta">Snag the Deal</button>
+      </div>
+    </div>
+    <div class="deal-image">
+      <img class="product-img" src="funny_water_6p.png" alt="Funny Beer Glass">
+    </div>
+  </div>
+
+
+  <div class="product-grid">
+
+    <!-- 1. Funny Water -->
+    <div class="product-card card-1">
+      <div class="card-header">
+        <span class="badge badge-new">OG</span>
+        <img class="product-img" src="funny_water.png" alt="Funny Water">
+      </div>
+      <div class="card-body">
+        <div class="product-name">Funny Water</div>
+        <p class="product-desc">The original. Still canned water with electrolytes and enough confidence to stare down a Perrier and win.</p>
+        <div class="product-footer">
+          <span class="product-volume">355ml</span>
+          <span class="product-price">CHF 1.95</span>
+          <button class="product-cta">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. Funny Willy -->
+    <div class="product-card card-2">
+      <div class="card-header">
+        <span class="badge badge-hot">🔥 Hot</span>
+        <img class="product-img" src="funny_willy.png" alt="Funny Willy">
+      </div>
+      <div class="card-body">
+        <div class="product-name">Willy Water</div>
+        <p class="product-desc">Our most innocent drink. Sparkling water that gets the room talking every single time.</p>
+        <div class="product-footer">
+          <span class="product-volume">355ml</span>
+          <span class="product-price">CHF 1.95</span>
+          <button class="product-cta">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. Funny Capy -->
+    <div class="product-card card-3">
+      <div class="card-header">
+        <span class="badge badge-cool">Chill</span>
+        <img class="product-img" src="funny_capy.png" alt="Funny Capy">
+      </div>
+      <div class="card-body">
+        <div class="product-name">Capybara Water</div>
+        <p class="product-desc">Inspired by the world's chillest animal. Tropical water with no special taste so mellow it once stopped an argument between strangers at a DMV.</p>
+        <div class="product-footer">
+          <span class="product-volume">355ml</span>
+          <span class="product-price">CHF 2.95</span>
+          <button class="product-cta">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. Funny Bec -->
+    <div class="product-card card-4">
+      <div class="card-header">
+        <span class="badge badge-bold">Bold</span>
+        <img class="product-img" src="funny_bec.png" alt="Funny Bec">
+      </div>
+      <div class="card-body">
+        <div class="product-name">Bec Water</div>
+        <p class="product-desc">Named after a sheep called Bec, that tastes exactly like still water, except with unexpected sass.</p>
+        <div class="product-footer">
+          <span class="product-volume">355ml</span>
+          <span class="product-price">CHF 2.95</span>
+          <button class="product-cta">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. Funny Beer Plastic -->
+    <div class="product-card card-5">
+      <div class="card-header">
+        <span class="badge badge-sip">Sip</span>
+        <img class="product-img" src="funny_beer_plastic.png" alt="Funny Beer Plastic">
+      </div>
+      <div class="card-body">
+        <div class="product-name">Funny Beer</div>
+        <p class="product-desc">Plastic packaging. Zero guilt. Perfect for fooling your fitness tracker, your boss, and your mother-in-law.</p>
+        <div class="product-footer">
+          <span class="product-volume">355ml</span>
+          <span class="product-price">CHF 3.95</span>
+          <button class="product-cta">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. Funny Vodka -->
+    <div class="product-card card-6">
+      <div class="card-header">
+        <span class="badge badge-weird">👀 Weird</span>
+        <img class="product-img" src="funny_vodka.png" alt="Funny Vodka">
+      </div>
+      <div class="card-body">
+        <div class="product-name">Funny Vodka</div>
+        <p class="product-desc">Our most adult offering. Distilled from pure audacity and a vague sense of mischief. Pairs well with questionable decisions and your mom. Also has a not sus at all blue color.</p>
+        <div class="product-footer">
+          <span class="product-volume">1750ml · 40% ABV</span>
+          <span class="product-price">CHF 36.95</span>
+          <button class="product-cta">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── MARQUEE 2 ── -->
+<div class="marquee-strip" style="background: #1D72F5;">
+  <div class="marquee-inner" style="animation-direction: reverse;">
+    <span>DRINK WEIRD</span>
+    <span>✦</span>
+    <span>STAY HYDRATED</span>
+    <span>✦</span>
+    <span>NO REGRETS</span>
+    <span>✦</span>
+    <span>ONLY VIBES</span>
+    <span>✦</span>
+    <span>FUNNY WATER CO.</span>
+    <span>✦</span>
+    <span>DRINK WEIRD</span>
+    <span>✦</span>
+    <span>STAY HYDRATED</span>
+    <span>✦</span>
+    <span>NO REGRETS</span>
+    <span>✦</span>
+    <span>ONLY VIBES</span>
+    <span>✦</span>
+    <span>FUNNY WATER CO.</span>
+    <span>✦</span>
+  </div>
+</div>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <strong>Funny Water Co.</strong> &nbsp;·&nbsp; Beverages for the Beautifully Deranged™<br>
+  <span style="margin-top:6px; display:block;">© 2024 Funny Water Co. All laughs reserved. Please drink responsibly (they said).</span>
+</footer>
+
+</body>
+</html>
